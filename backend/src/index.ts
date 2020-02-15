@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { config } from "dotenv";
+import dontenv from "dotenv";
 import routes from './routes';
 
 class App {
@@ -8,7 +8,7 @@ class App {
 
   public constructor() {
     this.express = express();
-    this.dontenv();
+    dontenv.config();
     this.middlewares();
     this.routes();
   }
@@ -20,10 +20,6 @@ class App {
 
   private routes() : void {
     this.express.use(routes);
-  }
-
-  private dontenv() : void {
-    config();
   }
 }
 
