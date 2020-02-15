@@ -6,9 +6,6 @@ const App: React.FC = () => (
   <>
     <GlobalStyle />
     <Routes />
-    <header>
-      <h1>Hello World</h1>
-    </header>
   </>
 );
 
