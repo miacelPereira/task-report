@@ -1,11 +1,26 @@
 import express from "express";
-import { config } from "dotenv";
 import cors from "cors";
+import dontenv from "dotenv";
+import routes from './routes';
 
-config();
+class App {
+  public express : express.Application;
 
-export default express().use([
-  cors,
-  express.json,
-  express.urlencoded({ extended: true })
-]);
+  public constructor() {
+    this.express = express();
+    dontenv.config();
+    this.middlewares();
+    this.routes();
+  }
+
+  private middlewares() : void {
+    this.express.use(express.json());
+    this.express.use(cors());
+  }
+
+  private routes() : void {
+    this.express.use(routes);
+  }
+}
+
+export default new App().express
