@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "@prisma/client": "2.0.0-preview021",
+    "@types/yup": "^0.26.31",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "yup": "^0.28.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
