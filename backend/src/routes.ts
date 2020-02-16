@@ -3,20 +3,16 @@ import User from "./controllers/User";
 import Validator from "./utils/Validator";
 
 class ApiRoutes {
-  private routes: Router;
+  public static getRoutes() {
+    const routes = Router();
 
-  constructor() {
-    this.routes = Router();
-  }
-
-  public getRoutes() {
-    this.routes
+    routes
       .route("/users")
-      .get((r, rs) => User.index(r, rs))
-      .post(Validator.ValidateUser, (r, rs) => User.store(r, rs));
+      .get(User.index)
+      .post(Validator.ValidateUser, User.store);
 
-    return this.routes;
+    return routes;
   }
 }
 
-export default new ApiRoutes();
+export default ApiRoutes;
