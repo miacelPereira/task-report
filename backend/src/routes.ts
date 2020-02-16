@@ -1,8 +1,22 @@
 import { Router } from "express";
 import User from "./controllers/User";
+import Validator from "./utils/Validator";
 
-const routes = Router();
+class ApiRoutes {
+  private routes: Router;
 
-routes.route("/users").get(User.index);
+  constructor() {
+    this.routes = Router();
+  }
 
-export default routes;
+  public getRoutes() {
+    this.routes
+      .route("/users")
+      .get((r, rs) => User.index(r, rs))
+      .post(Validator.ValidateUser, (r, rs) => User.store(r, rs));
+
+    return this.routes;
+  }
+}
+
+export default new ApiRoutes();
