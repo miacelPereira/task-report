@@ -7,25 +7,117 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model rel_user_task {
-  id      Int  @default(autoincrement()) @id
-  task_id task
-  user_id user
+model commentary {
+  commentary String
+  id         Int    @default(autoincrement()) @id
+  task_id    task
+
+  @@index([task_id], name: "fk_commentary_task_idx")
+}
+
+model commit {
+  commit_url  String
+  id          Int           @id
+  task_commit task_commit[]
+}
+
+model project {
+  created_at   DateTime
+  description  String
+  id           Int            @default(autoincrement()) @id
+  name         String         @unique
+  updated_at   DateTime?
+  task_project task_project[]
+}
+
+model role {
+  id   Int    @default(autoincrement()) @id
+  name String @unique
+  user user[]
+}
+
+model status {
+  id          Int           @default(autoincrement()) @id
+  name        String        @unique
+  task_status task_status[]
+}
+
+model tag {
+  id       Int        @default(autoincrement()) @id
+  name     String     @unique
+  task_tag task_tag[]
 }
 
 model task {
-  active         Int             @default(1)
-  created_at     DateTime
-  name           String
-  task_id        Int             @default(autoincrement()) @id
-  rel_user_tasks rel_user_task[]
+  card_url     String?
+  created_at   DateTime
+  description  String?
+  id           Int            @default(autoincrement()) @id
+  name         String
+  updated_at   DateTime?
+  commentary   commentary[]
+  task_commit  task_commit[]
+  task_project task_project[]
+  task_status  task_status[]
+  task_tag     task_tag[]
+  user_task    user_task[]
+}
+
+model task_commit {
+  id        Int    @id
+  commit_id commit
+  task_id   task
+
+  @@index([commit_id], name: "fk_task_commit_commit_idx")
+  @@index([task_id], name: "fk_task_commit_task_idx")
+}
+
+model task_project {
+  id         Int     @default(autoincrement()) @id
+  project_id project
+  task_id    task
+
+  @@index([project_id], name: "fk_task_has_project_project1_idx")
+  @@index([task_id], name: "fk_task_has_project_task1_idx")
+}
+
+model task_status {
+  id        Int    @default(autoincrement()) @id
+  status_id status
+  task_id   task
+
+  @@index([status_id], name: "fk_task_has_status_status1_idx")
+  @@index([task_id], name: "fk_task_has_status_task1_idx")
+}
+
+model task_tag {
+  id      Int  @default(autoincrement()) @id
+  tag_id  tag
+  task_id task
+
+  @@index([tag_id], name: "fk_task_has_tag_tag1_idx")
+  @@index([task_id], name: "fk_task_has_tag_task1_idx")
 }
 
 model user {
-  active         Int             @default(1)
-  email          String          @unique
-  name           String
-  password       String
-  user_id        Int             @default(autoincrement()) @id
-  rel_user_tasks rel_user_task[]
+  created_at DateTime
+  email      String
+  id         Int         @default(autoincrement()) @id
+  login      String      @unique
+  name       String
+  password   String
+  updated_at DateTime?
+  role_id    role
+  user_task  user_task[]
+
+  @@index([role_id], name: "fk_user_role_idx")
+}
+
+model user_task {
+  id      Int  @default(autoincrement()) @id
+  task_id task
+  user_id user
+
+  @@index([task_id], name: "fk_user_has_task_task1_idx")
+  @@index([user_id], name: "fk_user_has_task_user1_idx")
 }
