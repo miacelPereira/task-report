@@ -4,15 +4,24 @@ Task Report é um gerenciador de tarefas e gerador de relatórios com base nas t
 
 ## Dependências
 
-- Node.js
+---
+
+- Node.js 10 (ou maior)
 - Mysql
 - Git
 - Yarn - _opcional_
 
 ## Modo de usar
 
-- Clone o projeto com o comando: `git clone https://github.com/ROiPinheiro/task-report.git`
-- Navegue até a pasta `database` e execute o script `SQL` para criar o banco-de-dados.
+---
+
+Clone o projeto com o comando:
+
+```
+git clone https://github.com/ROiPinheiro/task-report.git
+```
+
+Navegue até a pasta `database` e execute o script `SQL` para criar o banco-de-dados.
 
 ### Back-End
 
@@ -22,16 +31,8 @@ Task Report é um gerenciador de tarefas e gerador de relatórios com base nas t
 Após isso, execute os seguintes comandos:
 
 - `yarn` ou `npm i` para instalar as dependências.
-- `yarn gen` para criar a _mágica_ do `prisma2`.
+- `yarn gen` para executar o `prisma@client`.
 - `yarn dev` para executar o servidor `express`.
-
-#### Observações
-
-O _Back-End_ é dependente do banco-de-dados, garanta que ele esteja funcionando corretamente e que a _string_ de conexão esteja correta, para que ele possa ser utilizado corretamente.
-
-Todos os comandos feitos com `yarn` podem ser feitos com o `npm` substituindo o `yarn` por `npm run` com exceção do comanda de instalação das dependências.
-
-Caso faça qualquer alteração na estrutura do banco de dados, execute `yarn intro` ou `npm run intro` para que o `prisma2` gere novamente as _models_.
 
 ### Front-End
 
@@ -39,7 +40,14 @@ Caso faça qualquer alteração na estrutura do banco de dados, execute `yarn in
 - Execute o comando `yarn` ou `npm i` para instalar as dependências.
 - Execute o comando `yarn start` ou `npm start` para executar o servidor.
 
+#### Observações
+
+> O _Back-End_ é dependente do banco-de-dados, garanta que ele esteja funcionando corretamente e que a _string_ de conexão esteja correta, para que ele possa ser utilizado corretamente.  
+> Caso faça qualquer alteração na estrutura do banco de dados, execute `yarn intro` ou `npm run intro` para que o `prisma2` gere novamente as _models_.
+
 ## Parceiros do projeto
+
+---
 
 <table>
   <tr>
