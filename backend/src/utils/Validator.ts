@@ -10,7 +10,9 @@ class Validator {
         .string()
         .email()
         .required(),
-      password: yup.string().required()
+      password: yup.string().required(),
+      login: yup.string().required(),
+      role: yup.number().required(),
     });
 
     try {

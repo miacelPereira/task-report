@@ -11,6 +11,10 @@ class ApiRoutes {
       .get(User.index)
       .post(Validator.ValidateUser, User.store);
 
+    routes
+      .route("/users/:id")
+      .delete(User.destroy);
+    
     return routes;
   }
 }

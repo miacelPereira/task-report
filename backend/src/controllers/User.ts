@@ -31,6 +31,17 @@ class UserController {
       return res.json(ApiResponse<string>("error", error.message));
     }
   }
+
+  static async destroy(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const deleteUser = await UserRepository.destroy(parseInt(id));
+      return res.json(ApiResponse<User>(MESSAGE.REQUEST_SUCCESSFUL, deleteUser));
+    } catch (error) {
+      return res.json(ApiResponse<string>("error", error.message))
+    }
+  }
+
 }
 
 export default UserController;

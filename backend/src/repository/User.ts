@@ -36,6 +36,15 @@ class UserRepository {
       }
     });
   }
+
+  static async destroy(id: number): Promise<User> {
+    return await prisma.user.delete({
+      where: {
+        id
+      }
+    });
+  } 
+
 }
 
 export default UserRepository;
