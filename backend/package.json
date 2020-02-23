@@ -4,7 +4,9 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/server.ts"
+    "dev": "nodemon ./src/server.ts",
+    "intro": "npx prisma2 introspect",
+    "gen": "npx prisma2 generate"
   },
   "dependencies": {
     "@prisma/client": "2.0.0-preview021",

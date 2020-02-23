@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { ApiResponse, MESSAGE } from "../utils/ApiResponse";
-import { user } from "@prisma/client";
+import { user as User } from "@prisma/client";
 import UserRepository, { Users } from "../repository/User";
 
-class User {
+class UserController {
   static async index(_: Request, res: Response): Promise<Response> {
     try {
       const users = await UserRepository.getAll();
@@ -21,12 +21,12 @@ class User {
 
       if (isRegisteredUser) {
         return res.json(
-          ApiResponse<user>("User already registered", isRegisteredUser)
+          ApiResponse<User>("User already registered", isRegisteredUser)
         );
       }
 
       const user = await UserRepository.create({ name, email, password, login, role });
-      return res.json(ApiResponse<user>(MESSAGE.REQUEST_SUCCESSFUL, user));
+      return res.json(ApiResponse<User>(MESSAGE.REQUEST_SUCCESSFUL, user));
     } catch (error) {
       console.log('====================================');
       console.log(error);
@@ -36,4 +36,4 @@ class User {
   }
 }
 
-export default User;
+export default UserController;
