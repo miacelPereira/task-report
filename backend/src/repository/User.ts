@@ -4,7 +4,6 @@ import { user as User } from "@prisma/client";
 export type Users = {
   name: string;
   email: string;
-  active: number;
 };
 
 class UserRepository {
@@ -12,8 +11,7 @@ class UserRepository {
     return await prisma.user.findMany({
       select: {
         name: true,
-        email: true,
-        active: true
+        email: true
       }
     });
   }
@@ -26,12 +24,14 @@ class UserRepository {
     });
   }
 
-  static async create({ name, email, password }): Promise<User> {
+  static async create({ name, email, password, login, role }): Promise<User> {    
     return await prisma.user.create({
       data: {
         name,
         email,
-        password
+        password,
+        login,
+        role_id: { connect: { id: parseInt(role) } },
       }
     });
   }

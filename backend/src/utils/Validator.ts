@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { Request, Response, NextFunction } from "express";
-import { ApiResponse, API_RESPONSE_MESSAGE } from "./ApiResponse";
+import { ApiResponse, MESSAGE } from "./ApiResponse";
 
 class Validator {
   static async ValidateUser(req: Request, res: Response, next: NextFunction) {
@@ -20,7 +20,7 @@ class Validator {
     } catch (error) {
       return res.json(
         ApiResponse<string[]>(
-          API_RESPONSE_MESSAGE.VALIDATION_ERROR,
+          MESSAGE.VALIDATION_ERROR,
           error.errors
         )
       );

@@ -8,4 +8,5 @@ export function ApiResponse<T>(message: MESSAGE | string, payload: T) {
 export enum MESSAGE {
   VALIDATION_ERROR = "Error on request params",
   REQUEST_SUCCESSFUL = "Request successful"
+  
 }

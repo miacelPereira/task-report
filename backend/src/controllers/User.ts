@@ -16,7 +16,7 @@ class User {
 
   static async store(req: Request, res: Response): Promise<Response> {
     try {
-      const { name, email, password } = req.body;
+      const { name, email, password, login, role } = req.body;
       const isRegisteredUser = await UserRepository.getOne(email);
 
       if (isRegisteredUser) {
@@ -25,10 +25,12 @@ class User {
         );
       }
 
-      const user = await UserRepository.create({ name, email, password });
-
+      const user = await UserRepository.create({ name, email, password, login, role });
       return res.json(ApiResponse<user>(MESSAGE.REQUEST_SUCCESSFUL, user));
     } catch (error) {
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
       return res.json(ApiResponse<string>("error", error.message));
     }
   }
