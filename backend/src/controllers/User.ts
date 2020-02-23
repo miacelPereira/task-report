@@ -28,9 +28,6 @@ class UserController {
       const user = await UserRepository.create({ name, email, password, login, role });
       return res.json(ApiResponse<User>(MESSAGE.REQUEST_SUCCESSFUL, user));
     } catch (error) {
-      console.log('====================================');
-      console.log(error);
-      console.log('====================================');
       return res.json(ApiResponse<string>("error", error.message));
     }
   }

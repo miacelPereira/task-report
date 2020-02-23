@@ -32,6 +32,7 @@ class UserRepository {
         password,
         login,
         role_id: { connect: { id: parseInt(role) } },
+        created_at: new Date()
       }
     });
   }
